@@ -1,0 +1,37 @@
+{
+  "format_version": "1.19.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "custom:test",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+      "animations": {
+        "fly.up": "animation.fly.up"
+      }
+    },
+    "components": {},
+    "component_groups": {
+      "despawn": {
+        "minecraft:despawn": {}
+      },
+      "instant_despawn": {
+        "minecraft:instant_despawn": {}
+      }
+    },
+    "events": {
+      "despawn": {
+        "add": {
+          "component_groups": [
+            "a",
+            "b",
+            "instant_despawn",
+            "c",
+            "despawn]",
+            "d"
+          ]
+        }
+      }
+    }
+  }
+}
