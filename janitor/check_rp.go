@@ -1,6 +1,7 @@
 package janitor
 
 func CheckRP() {
+	settings := GetSettings()
 	keys := NewSet()
 
 	for _, path := range Walk("RP/attachables") {
@@ -13,7 +14,7 @@ func CheckRP() {
 		keys = GetKeys(rp.Description, keys)
 	}
 
-	CleanFiles("RP", "animations", keys)
-	CleanFiles("RP", "animation_controllers", keys)
-	CleanFiles("RP", "render_controllers", keys)
+	CleanFiles("RP", "animations", keys, settings.Remove)
+	CleanFiles("RP", "animation_controllers", keys, settings.Remove)
+	CleanFiles("RP", "render_controllers", keys, settings.Remove)
 }

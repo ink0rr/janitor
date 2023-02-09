@@ -9,7 +9,6 @@ import (
 func Walk(path string) (paths []string) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			fmt.Println(err)
 			return err
 		}
 		if !info.IsDir() && filepath.Ext(path) == ".json" {
@@ -18,7 +17,7 @@ func Walk(path string) (paths []string) {
 		return nil
 	})
 	if err != nil {
-		fmt.Println(err)
+		fmt.Printf("Path not found: %s\n", path)
 		return []string{}
 	}
 	return paths
