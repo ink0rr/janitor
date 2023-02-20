@@ -2,6 +2,7 @@ package janitor
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/fs"
 	"os"
 
@@ -13,7 +14,11 @@ func ReadJson[T interface{}](path string) (result *T, err error) {
 	if err != nil {
 		return nil, err
 	}
-	jsonc.Unmarshal([]byte(file), &result)
+	err = jsonc.Unmarshal([]byte(file), &result)
+	if err != nil {
+		fmt.Printf("Failed to parse %s: %s\n", path, err)
+		return nil, err
+	}
 	return result, nil
 }
 

@@ -11,7 +11,10 @@ func CheckBP() {
 	keys := NewSet()
 
 	for _, path := range Walk("BP/entities") {
-		bp, _ := ReadJson[EntityBehavior](path)
+		bp, err := ReadJson[EntityBehavior](path)
+		if err != nil {
+			continue
+		}
 		keys = GetKeys(bp.Description, keys)
 		if bp.ComponentGroups == nil {
 			continue
