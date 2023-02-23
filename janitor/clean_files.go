@@ -7,7 +7,10 @@ import (
 
 func CleanFiles(pack string, dir string, keys *Set, remove bool) {
 	for _, path := range Walk(pack + "/" + dir) {
-		dataPtr, _ := ReadJson[map[string]interface{}](path)
+		dataPtr, err := ReadJson[map[string]interface{}](path)
+		if err != nil {
+			continue
+		}
 		fileData := (*dataPtr)
 
 		data := fileData[dir].(map[string]interface{})
